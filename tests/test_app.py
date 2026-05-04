@@ -62,6 +62,23 @@ def test_signup_for_activity_duplicate_returns_400():
     assert response.json()["detail"] == "Student already signed up for this activity"
 
 
+def test_remove_participant_from_activity():
+    # Arrange
+    activity_name = "Drama Club"
+    participant_email = original_activities[activity_name]["participants"][0]
+
+    # Act
+    response = client.delete(
+        f"/activities/{activity_name}/participants",
+        params={"email": participant_email},
+    )
+
+    # Assert
+    assert response.status_code == 200
+    assert response.json() == {"message": f"Removed {participant_email} from {activity_name}"}
+    assert participant_email not in activities[activity_name]["participants"]
+
+
 def test_signup_for_unknown_activity_returns_404():
     # Arrange
     activity_name = "Nonexistent Club"

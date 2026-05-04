@@ -88,14 +88,40 @@ section h3 {
 }
 
 .participants ul {
-  list-style: disc inside;
-  margin-left: 0;
-  padding-left: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .participants li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 6px;
+  padding: 8px 0;
+  border-bottom: 1px solid #d3d6f0;
   color: #333;
+}
+
+.participants li:last-child {
+  border-bottom: none;
+}
+
+.remove-participant {
+  background: transparent;
+  border: none;
+  color: #c62828;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.remove-participant:hover {
+  background-color: rgba(198, 40, 40, 0.1);
+  transform: scale(1.05);
 }
 
 .no-participants {
